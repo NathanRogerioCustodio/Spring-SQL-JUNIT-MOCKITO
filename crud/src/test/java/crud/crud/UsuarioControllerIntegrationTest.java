@@ -29,8 +29,6 @@ public class UsuarioControllerIntegrationTest {
         usuario.setName("New Integration User");
         usuarioRepository.save(usuario);
 
-        // Ajuste o caminho conforme o mapeamento do controlador
-        // Se estiver usando @RequestParam, use: get("/usuario/id").param("id", usuario.getId().toString())
         mockMvc.perform(get("/usuario/" + usuario.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("New Integration User"));
@@ -42,11 +40,9 @@ public class UsuarioControllerIntegrationTest {
         usuario.setName("User To Delete");
         usuarioRepository.save(usuario);
 
-        // Deletar o usuário
         mockMvc.perform(delete("/usuario/" + usuario.getId()))
                 .andExpect(status().isOk());
 
-        // Verificar se o usuário foi deletado (espera status 404 Not Found)
         mockMvc.perform(get("/usuario/" + usuario.getId()))
                 .andExpect(status().isNotFound());
     }

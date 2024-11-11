@@ -31,7 +31,7 @@ public class UsuarioServiceTest {
     @Test
     void testCreateUsuario() {
         Usuario usuario = new Usuario();
-        usuario.setName("New User"); // Defina o nome do usuário aqui
+        usuario.setName("New User");
 
         when(usuarioRepository.save(usuario)).thenReturn(usuario);
 
